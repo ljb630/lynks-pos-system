@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_pos/screens/login/input_field.dart';
+import 'package:lynks_pos_system/screens/login/input_field.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});

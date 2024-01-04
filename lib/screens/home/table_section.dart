@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_pos/util/constants.dart';
+import 'package:lynks_pos_system/util/constants.dart';
 
 class TableSection extends StatefulWidget {
   const TableSection({super.key});

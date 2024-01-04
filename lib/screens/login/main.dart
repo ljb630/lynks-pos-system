@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_pos/screens/login/graphic.dart';
-import 'package:restaurant_pos/screens/login/login_form.dart';
+import 'package:lynks_pos_system/screens/login/graphic.dart';
+import 'package:lynks_pos_system/screens/login/login_form.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

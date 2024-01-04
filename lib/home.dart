@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_pos/screens/home/main.dart';
-import 'package:restaurant_pos/screens/login/main.dart';
+import 'package:lynks_pos_system/screens/home/main.dart';
+import 'package:lynks_pos_system/screens/login/main.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

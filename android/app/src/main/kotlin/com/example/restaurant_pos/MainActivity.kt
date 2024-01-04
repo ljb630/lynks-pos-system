@@ -1,4 +1,4 @@
-package com.example.restaurant_pos
+package com.example.lynks_pos_system
 
 import io.flutter.embedding.android.FlutterActivity
 

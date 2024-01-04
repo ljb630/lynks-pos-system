@@ -1,6 +1,6 @@
 {
-    "name": "restaurant_pos",
-    "short_name": "restaurant_pos",
+    "name": "lynks_pos_system",
+    "short_name": "lynks_pos_system",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
