@@ -18,6 +18,7 @@ class _SideBarState extends State<SideBar> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: deepDarkBlue,
+        resizeToAvoidBottomInset: false,
         appBar: sideAppBar(),
         body: Column(
           children: [

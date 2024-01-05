@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lynks_pos_system/screens/home/main_appbar.dart';
-import 'package:lynks_pos_system/screens/home/table_section.dart';
+import 'package:lynks_pos_system/screens/home/table/table_section.dart';
 import 'package:lynks_pos_system/util/constants.dart';
 
 class TableLayout extends StatefulWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lynks_pos_system/routes/routes.dart';
 import 'package:lynks_pos_system/screens/login/input_field.dart';
 
 class LoginForm extends StatefulWidget {
@@ -51,6 +52,7 @@ class _LoginFormState extends State<LoginForm> {
                 onPressed: () {
                   // Add your sign-in logic here
                   print("${emailController.text} ${passwordController.text}");
+                  Navigator.pushNamed(context, homeScreenRoute);
                 },
                 child: const Text(
                   'Sign In',

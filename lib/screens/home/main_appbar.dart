@@ -23,7 +23,11 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
-      leading: const Icon(Icons.arrow_back),
+      leading: GestureDetector(
+          onTap: (() {
+            Navigator.pop(context);
+          }),
+          child: const Icon(Icons.arrow_back)),
       backgroundColor: darkBlue,
       foregroundColor: Colors.white,
       toolbarHeight: 100,

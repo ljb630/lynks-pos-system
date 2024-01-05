@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lynks_pos_system/home.dart';
+import 'package:lynks_pos_system/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Lynks POS System',
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: generateRoute,
       theme: ThemeData(
         primarySwatch: Colors.indigo,
         textTheme: Typography().white,
