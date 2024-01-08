@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lynks_pos_system/screens/home/layout.dart';
+import 'package:lynks_pos_system/screens/home/menu/main.dart';
 import 'package:lynks_pos_system/screens/home/sidebar/main.dart';
 import 'package:lynks_pos_system/screens/home/table/table.dart';
+import 'package:lynks_pos_system/util/responsiveness.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,17 +15,34 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      children: [
-        Expanded(
-          flex: 10,
-          child: TableLayout(),
+    return const Scaffold(
+      body: ResponsiveWidget(
+        smallScreen: Layout(),
+        mediumScreen: Row(
+          children: [
+            Expanded(
+              flex: 10,
+              child: Layout(),
+            ),
+            Expanded(
+              flex: 4,
+              child: SideBar(),
+            ),
+          ],
         ),
-        Expanded(
-          flex: 4,
-          child: SideBar(),
+        largeScreen: Row(
+          children: [
+            Expanded(
+              flex: 10,
+              child: Layout(),
+            ),
+            Expanded(
+              flex: 4,
+              child: SideBar(),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

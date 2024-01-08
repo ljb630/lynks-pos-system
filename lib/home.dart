@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lynks_pos_system/screens/current_orders/main.dart';
+import 'package:lynks_pos_system/screens/customers/main.dart';
 import 'package:lynks_pos_system/screens/home/main.dart';
 import 'package:lynks_pos_system/screens/login/main.dart';
 

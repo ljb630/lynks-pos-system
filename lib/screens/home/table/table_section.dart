@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:lynks_pos_system/routes/routes.dart';
 import 'package:lynks_pos_system/util/constants.dart';
+import 'package:lynks_pos_system/util/responsiveness.dart';
 
 class TableSection extends StatefulWidget {
   const TableSection({super.key});
@@ -9,20 +12,26 @@ class TableSection extends StatefulWidget {
 }
 
 class _TableSectionState extends State<TableSection> {
-  final TextEditingController _textFieldController = TextEditingController();
+  final TextEditingController _nameFieldController = TextEditingController();
+  final TextEditingController _emailFieldController = TextEditingController();
+  final TextEditingController _phoneFieldController = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _textFieldController.addListener(() {
-      print("Text field: ${_textFieldController.text}");
-    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.sizeOf(context).width;
+
     return GridView.count(
-        crossAxisCount: 4,
+        crossAxisCount: ResponsiveWidget.isSmallScreen(context)
+            ? 2
+            : ResponsiveWidget.isMediumScreen(context)
+                ? 3
+                : 4,
         childAspectRatio: 1.8,
         mainAxisSpacing: 7,
         crossAxisSpacing: 7,
@@ -59,7 +68,9 @@ class _TableSectionState extends State<TableSection> {
   }
 
   Future<void> _displayTextInputDialog(BuildContext context, int index) async {
-    _textFieldController.clear();
+    _nameFieldController.clear();
+    _emailFieldController.clear();
+    _phoneFieldController.clear();
     return showDialog(
       context: context,
       builder: (context) {
@@ -76,19 +87,30 @@ class _TableSectionState extends State<TableSection> {
                     fontSize: 16,
                     color: Colors.black,
                   ),
-                  controller: _textFieldController,
+                  controller: _nameFieldController,
                   decoration: const InputDecoration(
                       hintText: "Name", border: OutlineInputBorder()),
                 ),
                 const SizedBox(height: 5),
-                const TextField(
-                  // controller: _textFieldController,
-                  decoration: InputDecoration(
+                TextField(
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                  controller: _emailFieldController,
+                  decoration: const InputDecoration(
                       hintText: "E-mail", border: OutlineInputBorder()),
                 ),
                 const SizedBox(height: 5),
-                const TextField(
-                  decoration: InputDecoration(
+                TextField(
+                  controller: _phoneFieldController,
+                  keyboardType: TextInputType.number,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colors.black,
+                  ),
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  decoration: const InputDecoration(
                       hintText: "Phone no", border: OutlineInputBorder()),
                 ),
               ],
@@ -99,7 +121,9 @@ class _TableSectionState extends State<TableSection> {
               color: deepDarkBlue,
               child: TextButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.of(context).pop();
+                  pageKey.currentState?.pushReplacementNamed(menuScreenRoute);
+                  Navigator.pushNamed(context, menuScreenRoute);
                 },
                 child: const Text(
                   'Next ',

@@ -16,7 +16,9 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(40),
+      alignment: Alignment.center,
       child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -52,7 +54,7 @@ class _LoginFormState extends State<LoginForm> {
                 onPressed: () {
                   // Add your sign-in logic here
                   print("${emailController.text} ${passwordController.text}");
-                  Navigator.pushNamed(context, homeScreenRoute);
+                  Navigator.pushReplacementNamed(context, homeScreenRoute);
                 },
                 child: const Text(
                   'Sign In',

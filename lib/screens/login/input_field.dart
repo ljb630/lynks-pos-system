@@ -16,7 +16,13 @@ class InputField extends StatefulWidget {
 }
 
 class _InputFieldState extends State<InputField> {
-  bool _obscureText = true;
+  late bool _obscureText;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _obscureText = widget.obscureText;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +43,7 @@ class _InputFieldState extends State<InputField> {
             fontSize: 16,
             color: Colors.black,
           ),
-          obscureText: widget.obscureText,
+          obscureText: _obscureText,
           controller: widget.controller,
           decoration: InputDecoration(
             hintText: widget.hintText,
