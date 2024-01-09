@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:lynks_pos_system/controllers/selected_table.dart';
+import 'package:lynks_pos_system/controllers/table_toggle_controller.dart';
+import 'package:lynks_pos_system/models/customer_details.dart';
 import 'package:lynks_pos_system/routes/routes.dart';
 import 'package:lynks_pos_system/util/constants.dart';
 import 'package:lynks_pos_system/util/responsiveness.dart';
@@ -16,6 +20,17 @@ class _TableSectionState extends State<TableSection> {
   final TextEditingController _emailFieldController = TextEditingController();
   final TextEditingController _phoneFieldController = TextEditingController();
 
+  final TabbleToggleController _controller = Get.find();
+  // final SelectedTableController _selectedTableController = Get.find();
+
+  CustomerDetailsModel getCoustomerDetails(int index) {
+    return CustomerDetailsModel(
+        name: _nameFieldController.text,
+        email: _emailFieldController.text,
+        phoneNumber: _phoneFieldController.text,
+        tableNo: index);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -28,7 +43,7 @@ class _TableSectionState extends State<TableSection> {
 
     return GridView.count(
         crossAxisCount: ResponsiveWidget.isSmallScreen(context)
-            ? 2
+            ? 1
             : ResponsiveWidget.isMediumScreen(context)
                 ? 3
                 : 4,
@@ -121,9 +136,11 @@ class _TableSectionState extends State<TableSection> {
               color: deepDarkBlue,
               child: TextButton(
                 onPressed: () {
+                  _controller.setCustomerDetails(getCoustomerDetails(index));
+                  print(_controller.selectedCustomer.value!.name);
                   Navigator.of(context).pop();
-                  pageKey.currentState?.pushReplacementNamed(menuScreenRoute);
-                  Navigator.pushNamed(context, menuScreenRoute);
+
+                  _controller.changeTable();
                 },
                 child: const Text(
                   'Next ',

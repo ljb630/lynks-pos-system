@@ -29,6 +29,7 @@ class CurrentOrdersScreen extends StatelessWidget {
         ),
         actions: [
           Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
                 color: Colors.indigo.shade600,
                 borderRadius: BorderRadius.circular(5)),
@@ -39,6 +40,7 @@ class CurrentOrdersScreen extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
                 color: Colors.purple.shade600,
                 borderRadius: BorderRadius.circular(5)),
@@ -50,6 +52,8 @@ class CurrentOrdersScreen extends StatelessWidget {
                     const Text('Home', style: TextStyle(color: Colors.white))),
           ),
           Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.only(right: 10),
             decoration: BoxDecoration(
                 color: Colors.indigo.shade600,
                 borderRadius: BorderRadius.circular(5)),
@@ -70,8 +74,7 @@ class CurrentOrdersScreen extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: SingleChildScrollView(
-            scrollDirection: ResponsiveWidget.isSmallScreen(context) ||
-                    ResponsiveWidget.isMediumScreen(context)
+            scrollDirection: ResponsiveWidget.isSmallScreen(context)
                 ? Axis.horizontal
                 : Axis.vertical,
             child: DataTable(

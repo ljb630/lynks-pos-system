@@ -29,6 +29,7 @@ class CustomerScreen extends StatelessWidget {
         ),
         actions: [
           Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
                 color: Colors.indigo.shade600,
                 borderRadius: BorderRadius.circular(5)),
@@ -38,6 +39,7 @@ class CustomerScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.white))),
           ),
           Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             margin: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
                 color: Colors.purple.shade600,
@@ -50,6 +52,7 @@ class CustomerScreen extends StatelessWidget {
                     const Text('Home', style: TextStyle(color: Colors.white))),
           ),
           Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
                 color: Colors.indigo.shade600,
                 borderRadius: BorderRadius.circular(5)),
@@ -71,8 +74,7 @@ class CustomerScreen extends StatelessWidget {
           scrollDirection: Axis.vertical,
           physics: const BouncingScrollPhysics(),
           child: SingleChildScrollView(
-            scrollDirection: ResponsiveWidget.isSmallScreen(context) ||
-                    ResponsiveWidget.isMediumScreen(context)
+            scrollDirection: ResponsiveWidget.isSmallScreen(context)
                 ? Axis.horizontal
                 : Axis.vertical,
             child: DataTable(

@@ -1,8 +1,11 @@
+import 'package:lynks_pos_system/models/order_modal.dart';
+
 class CustomerDetailsModel {
   int tableNo;
   String name;
   String email;
   String phoneNumber;
+  List<OrderModel> orders = [];
 
   CustomerDetailsModel({
     required this.tableNo,

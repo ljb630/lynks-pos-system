@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:lynks_pos_system/controllers/selected_table.dart';
+import 'package:lynks_pos_system/controllers/table_toggle_controller.dart';
 import 'package:lynks_pos_system/routes/routes.dart';
 import 'package:lynks_pos_system/screens/home/main_appbar.dart';
 import 'package:lynks_pos_system/screens/home/menu/main.dart';
@@ -14,33 +17,18 @@ class Layout extends StatefulWidget {
 }
 
 class _LayoutState extends State<Layout> {
-  var keyOne = GlobalKey<NavigatorState>();
+  final TabbleToggleController _toggleController = Get.find();
+  final key = const Key("Layout");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(),
-      backgroundColor: deepDarkBlue,
-      body: PopScope(
-        // canPop: true,
-        child: Navigator(
-          key: pageKey,
-          onGenerateRoute: (routeSettings) {
-            Widget page;
-            switch (routeSettings.name) {
-              case tableLayoutRoute:
-                page = const TableLayout();
-                break;
-              case menuScreenRoute:
-                page = const MenuScreen();
-                break;
-              default:
-                page = const TableLayout();
-            }
-            return MaterialPageRoute(builder: ((context) => page));
-          },
-          initialRoute: tableLayoutRoute,
-        ),
-      ),
-    );
+        appBar: MainAppBar(key: key),
+        backgroundColor: deepDarkBlue,
+        body: Obx(
+          () => Container(
+              child: _toggleController.isTable.value
+                  ? const TableLayout()
+                  : const MenuScreen()),
+        ));
   }
 }

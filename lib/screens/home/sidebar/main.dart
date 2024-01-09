@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:lynks_pos_system/controllers/table_toggle_controller.dart';
+import 'package:lynks_pos_system/screens/home/sidebar/cart.dart';
 import 'package:lynks_pos_system/screens/home/sidebar/custom_text_button.dart';
 import 'package:lynks_pos_system/screens/home/sidebar/empty_cart.dart';
 import 'package:lynks_pos_system/util/constants.dart';
@@ -12,18 +15,17 @@ class SideBar extends StatefulWidget {
 }
 
 class _SideBarState extends State<SideBar> {
-  final List<String> items =
-      List<String>.generate(20, (index) => 'Item $index');
+  TabbleToggleController toggleController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: deepDarkBlue,
         resizeToAvoidBottomInset: false,
-        // appBar: sideAppBar(),
+        appBar: sideAppBar(),
         body: SafeArea(
           child: Column(
             children: [
-              sideAppBar(),
               Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -58,30 +60,28 @@ class _SideBarState extends State<SideBar> {
                           color: Colors.white, size: 20),
                     ],
                   )),
-              const Expanded(flex: 1, child: EmptyCart()),
+              const Expanded(flex: 1, child: Cart()),
               SizedBox(
                   width: double.infinity,
-                  height: 170,
+                  height: 200,
                   child: Column(
                     children: [
-                      Row(
+                      const Row(
                         children: <Widget>[
-                          const Expanded(
+                          Expanded(
                             child: CustomTextButton(
                                 text: "Discount",
                                 color: Color.fromRGBO(19, 23, 52, 0.8)),
                           ),
-                          const Expanded(
+                          Expanded(
                             child: CustomTextButton(
-                              text: "Cash",
-                              color: Color.fromRGBO(58, 72, 220, 1),
-                            ),
+                                text: "Cash",
+                                color: Color.fromRGBO(19, 23, 52, 0.8)),
                           ),
                           Expanded(
                             child: CustomTextButton(
-                              text: "UPI",
-                              color: Colors.blueAccent.shade200,
-                            ),
+                                text: "UPI",
+                                color: Color.fromRGBO(19, 23, 52, 0.8)),
                           )
                         ],
                       ),
@@ -91,26 +91,39 @@ class _SideBarState extends State<SideBar> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 5),
                             child: const Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Row(
                                   children: [
-                                    Text("Tax5.25"),
+                                    Text("Tax5.25",
+                                        style:
+                                            TextStyle(color: Colors.white60)),
                                     Spacer(),
-                                    Text("0.00"),
+                                    Text("0.00",
+                                        style:
+                                            TextStyle(color: Colors.white60)),
                                   ],
                                 ),
                                 Row(
                                   children: [
-                                    Text("Subtotal"),
+                                    Text("Subtotal",
+                                        style:
+                                            TextStyle(color: Colors.white60)),
                                     Spacer(),
-                                    Text("0.00"),
+                                    Text("0.00",
+                                        style:
+                                            TextStyle(color: Colors.white60)),
                                   ],
                                 ),
                                 Row(
                                   children: [
-                                    Text("Total"),
+                                    Text("Total",
+                                        style:
+                                            TextStyle(color: Colors.white60)),
                                     Spacer(),
-                                    Text("0.00"),
+                                    Text("0.00",
+                                        style:
+                                            TextStyle(color: Colors.white60)),
                                   ],
                                 )
                               ],
@@ -138,37 +151,36 @@ class _SideBarState extends State<SideBar> {
         ));
   }
 
-  sideAppBar() {
-    return Container(
-      color: darkBlue,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      child: const Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FaIcon(FontAwesomeIcons.magnifyingGlass,
-              color: Colors.white, size: 20),
-          Spacer(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Example',
-              ),
-              Text(
-                'Checked at 12:30',
-                style: TextStyle(fontSize: 10, color: Colors.grey),
-              ),
-            ],
-          ),
-          SizedBox(width: 10),
-          CircleAvatar(
-            radius: 20,
-            backgroundImage: NetworkImage(
-                "https://ui-avatars.com/api/?name=Example?bold=true&length=1&rounded=true&color=fff&background=B5013F"),
-          )
-        ],
+  AppBar sideAppBar() {
+    return AppBar(
+      backgroundColor: darkBlue,
+      // padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      leading: const Center(
+        child: FaIcon(FontAwesomeIcons.magnifyingGlass,
+            color: Colors.white, size: 20),
       ),
+
+      actions: const [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Example',
+              style: TextStyle(color: Colors.white),
+            ),
+            Text(
+              'Checked at 12:30',
+              style: TextStyle(fontSize: 10, color: Colors.grey),
+            ),
+          ],
+        ),
+        SizedBox(width: 10),
+        CircleAvatar(
+          radius: 20,
+          backgroundImage: NetworkImage(
+              "https://ui-avatars.com/api/?name=Example?bold=true&length=1&rounded=true&color=fff&background=B5013F"),
+        )
+      ],
     );
   }
 }

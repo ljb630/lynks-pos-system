@@ -20,7 +20,10 @@ class CustomTextButton extends StatelessWidget {
             side: const BorderSide(color: darkBlue),
           )),
           backgroundColor: MaterialStateProperty.all<Color>(color)),
-      child: Text(text, style: const TextStyle(color: Colors.white)),
+      child: Text(text,
+          style:
+              const TextStyle(color: Colors.white, overflow: TextOverflow.fade),
+          softWrap: true),
       onPressed: () {},
     );
   }
