@@ -51,7 +51,7 @@ class _MainAppBarState extends State<MainAppBar> {
             visible: !controller.isTable.value,
             child: GestureDetector(
               onTap: () {
-                controller.changeTable();
+                controller.bakcToTable();
               },
               child: const Icon(Icons.arrow_back),
             ),
@@ -61,7 +61,15 @@ class _MainAppBarState extends State<MainAppBar> {
           toolbarHeight: 100,
           actions: [
             !controller.isTable.value
-                ? Text(controller.getCustomerName())
+                ? Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    // decoration: BoxDecoration(
+                    //   borderRadius: BorderRadius.circular(10),
+                    //   color: const Color.fromARGB(255, 75, 83, 96),
+                    // ),
+                    child: Text(controller.getCustomerName()))
                 : const Text(""),
             ElevatedButton(
               style: ElevatedButton.styleFrom(

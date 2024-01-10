@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lynks_pos_system/controllers/customers_controller.dart';
 import 'package:lynks_pos_system/controllers/selected_table.dart';
 import 'package:lynks_pos_system/controllers/table_toggle_controller.dart';
 import 'package:lynks_pos_system/models/customer_details.dart';
@@ -41,7 +42,10 @@ class _TableSectionState extends State<TableSection> {
   Widget build(BuildContext context) {
     final double width = MediaQuery.sizeOf(context).width;
 
-    return GridView.count(
+    TabbleToggleController controller = Get.find();
+    CustomersController customersController = Get.find();
+
+    return Obx(() => GridView.count(
         crossAxisCount: ResponsiveWidget.isSmallScreen(context)
             ? 1
             : ResponsiveWidget.isMediumScreen(context)
@@ -54,9 +58,13 @@ class _TableSectionState extends State<TableSection> {
         children: List.generate(
           totalTables,
           (index) {
+            bool isTableVacant = customersController.isTableVacant(index + 1);
             return GestureDetector(
               onTap: () {
-                _displayTextInputDialog(context, index + 1);
+                customersController.isTableVacant(index + 1)
+                    ? _displayTextInputDialog(context, index + 1)
+                    : controller.changeTable(
+                        customersController.findCustomerByTableNo(index + 1));
               },
               child: Container(
                 padding: const EdgeInsets.all(10),
@@ -73,13 +81,13 @@ class _TableSectionState extends State<TableSection> {
                       ),
                     ),
                     const Spacer(),
-                    const Text("Status → vacant")
+                    Text("Status → ${isTableVacant ? "Vacant" : "Occupied"}"),
                   ],
                 ),
               ),
             );
           },
-        ));
+        )));
   }
 
   Future<void> _displayTextInputDialog(BuildContext context, int index) async {
@@ -136,11 +144,10 @@ class _TableSectionState extends State<TableSection> {
               color: deepDarkBlue,
               child: TextButton(
                 onPressed: () {
-                  _controller.setCustomerDetails(getCoustomerDetails(index));
-                  print(_controller.selectedCustomer.value!.name);
+                  print(_controller.selectedCustomer.value.name);
                   Navigator.of(context).pop();
 
-                  _controller.changeTable();
+                  _controller.changeTable(getCoustomerDetails(index));
                 },
                 child: const Text(
                   'Next ',

@@ -8,9 +8,14 @@ class TabbleToggleController extends GetxController {
       CustomerDetailsModel(name: "", email: "", phoneNumber: "", tableNo: -1);
   Rx<CustomerDetailsModel> selectedCustomer = emptyCustomerDetails.obs;
 
-  void changeTable() {
+  void changeTable(CustomerDetailsModel customer) {
+    setCustomerDetails(customer);
     isTable.value = !isTable.value;
     print(isTable);
+  }
+
+  void bakcToTable() {
+    isTable.value = !isTable.value;
   }
 
   bool isCustomerDetailsEmpty() {
@@ -45,9 +50,10 @@ class TabbleToggleController extends GetxController {
     final index = selectedCustomer.value.orders.indexWhere((order) {
       return order.itemName == name;
     });
-    print("added item $name");
+    // print("added item $name");
     if (index != -1) {
       selectedCustomer.value.orders[index].quantity += 1;
+      selectedCustomer.value.orders[index].price += price;
     } else {
       selectedCustomer.value.orders
           .add(OrderModel(itemName: name, quantity: 1, price: price));
@@ -64,6 +70,8 @@ class TabbleToggleController extends GetxController {
         selectedCustomer.value.orders.removeAt(index);
       } else {
         selectedCustomer.value.orders[index].quantity -= 1;
+        selectedCustomer.value.orders[index].price -=
+            selectedCustomer.value.orders[index].price;
       }
     }
     selectedCustomer.refresh();
@@ -71,6 +79,14 @@ class TabbleToggleController extends GetxController {
 
   void addItemsToCustomerOrder(OrderModel order) {
     selectedCustomer.value.orders.add(order);
+  }
+
+  double getTotalPrice() {
+    double total = 0;
+    for (var order in selectedCustomer.value.orders) {
+      total += order.price;
+    }
+    return total;
   }
 
   String getCustomerName() => selectedCustomer.value.name ?? "";

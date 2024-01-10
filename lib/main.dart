@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lynks_pos_system/home.dart';
 import 'package:lynks_pos_system/routes/routes.dart';
+import 'package:lynks_pos_system/screens/login/main.dart';
 import 'package:lynks_pos_system/util/init_controllers.dart' as init;
 
 Future<void> main() async {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
         textTheme: Typography().white,
       ),
-      home: const Home(),
+      home: const LoginScreen(),
     );
   }
 }

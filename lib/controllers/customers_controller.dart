@@ -5,6 +5,13 @@ import 'package:lynks_pos_system/models/order_modal.dart';
 class CustomersController extends GetxController {
   RxList<CustomerDetailsModel> customers = <CustomerDetailsModel>[].obs;
 
+  // RxMap<int,CustomerDetailsModel> customerMap = <int,CustomerDetailsModel>{}.obs;
+
+  bool isTableVacant(int tableNo) {
+    return customers.indexWhere((customer) => customer.tableNo == tableNo) ==
+        -1;
+  }
+
   void isEmpty() {
     customers.isEmpty;
   }
@@ -18,7 +25,7 @@ class CustomersController extends GetxController {
     customers.remove(customer);
   }
 
-  CustomerDetailsModel? findCustomerByTableNo(int tableNo) {
+  CustomerDetailsModel findCustomerByTableNo(int tableNo) {
     return customers.firstWhere((customer) => customer.tableNo == tableNo,
         orElse: () => CustomerDetailsModel(
             tableNo: -1, name: "", email: "", phoneNumber: ""));

@@ -21,20 +21,68 @@ class _CartState extends State<Cart> {
       if (toggleController.isTable.value) {
         return const EmptyCart();
       } else {
-        print("changeo");
+        List<OrderModel> orders =
+            toggleController.selectedCustomer.value.orders;
+
         return toggleController.isOrderEmpty()
             ? const EmptyCart()
             : ListView.builder(
                 padding: const EdgeInsets.all(8),
-                itemCount:
-                    toggleController.selectedCustomer.value.orders.length,
+                itemCount: orders.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Container(
-                    height: 50,
-                    color: deepDarkBlue,
-                    child: Center(
-                        child: Text(toggleController
-                            .selectedCustomer.value.orders[index].itemName)),
+                    margin: const EdgeInsets.symmetric(vertical: 2),
+                    height: 80,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(4),
+                        color: const Color.fromARGB(149, 97, 101, 115)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${index + 1}. ${orders[index].itemName}",
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: (() {
+                                    toggleController.decreaseItemQuantityByName(
+                                        orders[index].itemName);
+                                  }),
+                                  icon: const Icon(Icons.remove),
+                                  color: Colors.white,
+                                  iconSize: 16,
+                                ),
+                                Text(
+                                  orders[index].quantity.toString(),
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                IconButton(
+                                  onPressed: (() {
+                                    toggleController.addItemQuantityByName(
+                                        orders[index].itemName,
+                                        orders[index].price);
+                                  }),
+                                  icon: const Icon(Icons.add),
+                                  color: Colors.white,
+                                  iconSize: 16,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Text(
+                          orders[index].price.toString(),
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
                   );
                 },
               );
