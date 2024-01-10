@@ -6,8 +6,6 @@ import 'package:lynks_pos_system/controllers/customers_controller.dart';
 import 'package:lynks_pos_system/controllers/table_toggle_controller.dart';
 import 'package:lynks_pos_system/screens/home/sidebar/cart.dart';
 import 'package:lynks_pos_system/screens/home/sidebar/custom_text_button.dart';
-import 'package:lynks_pos_system/screens/home/sidebar/empty_cart.dart';
-import 'package:lynks_pos_system/screens/home/sidebar/place_order_button.dart';
 import 'package:lynks_pos_system/util/constants.dart';
 
 class SideBar extends StatefulWidget {

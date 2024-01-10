@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lynks_pos_system/screens/home/layout.dart';
-import 'package:lynks_pos_system/screens/home/menu/main.dart';
 import 'package:lynks_pos_system/screens/home/sidebar/main.dart';
-import 'package:lynks_pos_system/screens/home/table/table.dart';
 import 'package:lynks_pos_system/util/responsiveness.dart';
 
 class HomeScreen extends StatefulWidget {

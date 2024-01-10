@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lynks_pos_system/home.dart';
 import 'package:lynks_pos_system/routes/routes.dart';
 import 'package:lynks_pos_system/screens/login/main.dart';
 import 'package:lynks_pos_system/util/init_controllers.dart' as init;

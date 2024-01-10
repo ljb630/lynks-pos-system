@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lynks_pos_system/controllers/selected_table.dart';
 import 'package:lynks_pos_system/controllers/table_toggle_controller.dart';
 import 'package:lynks_pos_system/models/order_modal.dart';
 import 'package:lynks_pos_system/screens/home/sidebar/empty_cart.dart';
-import 'package:lynks_pos_system/util/constants.dart';
 
 class Cart extends StatefulWidget {
   const Cart({super.key});
