@@ -23,7 +23,7 @@ class TabbleToggleController extends GetxController {
   }
 
   bool isOrderEmpty() {
-    return selectedCustomer.value.orders.isEmpty ?? true;
+    return selectedCustomer.value.orders.isEmpty;
   }
 
   void setCustomerDetails(CustomerDetailsModel customer) {
@@ -89,7 +89,17 @@ class TabbleToggleController extends GetxController {
     return total;
   }
 
-  String getCustomerName() => selectedCustomer.value.name ?? "";
+  void removeItemByName(String name) {
+    final index = selectedCustomer.value.orders.indexWhere((order) {
+      return order.itemName == name;
+    });
+    if (index != -1) {
+      selectedCustomer.value.orders.removeAt(index);
+    }
+    selectedCustomer.refresh();
+  }
 
-  get getCustomerTableNo => selectedCustomer.value.tableNo ?? -1;
+  String getCustomerName() => selectedCustomer.value.name;
+
+  get getCustomerTableNo => selectedCustomer.value.tableNo;
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:lynks_pos_system/controllers/table_toggle_controller.dart';
 import 'package:lynks_pos_system/models/order_modal.dart';
@@ -68,6 +69,15 @@ class _CartState extends State<Cart> {
                                         orders[index].price);
                                   }),
                                   icon: const Icon(Icons.add),
+                                  color: Colors.white,
+                                  iconSize: 16,
+                                ),
+                                IconButton(
+                                  onPressed: (() {
+                                    toggleController.removeItemByName(
+                                        orders[index].itemName);
+                                  }),
+                                  icon: const FaIcon(FontAwesomeIcons.trashCan),
                                   color: Colors.white,
                                   iconSize: 16,
                                 ),

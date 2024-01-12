@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lynks_pos_system/controllers/customers_controller.dart';
-import 'package:lynks_pos_system/controllers/selected_table.dart';
 import 'package:lynks_pos_system/controllers/table_toggle_controller.dart';
 import 'package:lynks_pos_system/models/customer_details.dart';
-import 'package:lynks_pos_system/routes/routes.dart';
 import 'package:lynks_pos_system/util/constants.dart';
 import 'package:lynks_pos_system/util/responsiveness.dart';
 
@@ -40,7 +38,7 @@ class _TableSectionState extends State<TableSection> {
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.sizeOf(context).width;
+    // final double width = MediaQuery.sizeOf(context).width;
 
     TabbleToggleController controller = Get.find();
     CustomersController customersController = Get.find();
@@ -98,6 +96,10 @@ class _TableSectionState extends State<TableSection> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
           title: Text(
             'Customer Details of Table $index',
             style: const TextStyle(color: Colors.black),
@@ -141,6 +143,8 @@ class _TableSectionState extends State<TableSection> {
           ),
           actions: <Widget>[
             Container(
+              width: MediaQuery.of(context).size.width * 0.3,
+              // height: MediaQuery.of(context).size.height - 80,
               color: deepDarkBlue,
               child: TextButton(
                 onPressed: () {

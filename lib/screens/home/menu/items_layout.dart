@@ -41,7 +41,9 @@ class _ItemsLayoutState extends State<ItemsLayout> {
                   final String name =
                       menuSubItems[menuItems[widget.selected]]![index]["name"];
                   final double price =
-                      menuSubItems[menuItems[widget.selected]]![index]["price"];
+                      menuSubItems[menuItems[widget.selected]]![index]
+                              ["price"] +
+                          0.0;
                   return Container(
                     // padding: const EdgeInsets.all(10),
                     color: const Color.fromARGB(149, 97, 101, 115),
@@ -73,7 +75,7 @@ class _ItemsLayoutState extends State<ItemsLayout> {
                                 ),
                                 const Spacer(),
                                 const Text(
-                                  "Orders -> Kitchen",
+                                  "Orders → Kitchen",
                                   style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -103,9 +105,7 @@ class _ItemsLayoutState extends State<ItemsLayout> {
                                       ),
                                     ),
                                     Text(
-                                      controller
-                                          .getItemQuantityByName(name)
-                                          .toString(),
+                                      "${controller.getItemQuantityByName(name)}",
                                       style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
