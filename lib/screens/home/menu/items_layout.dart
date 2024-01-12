@@ -27,7 +27,7 @@ class _ItemsLayoutState extends State<ItemsLayout> {
           ? const Text("select item")
           : GridView.count(
               crossAxisCount: ResponsiveWidget.isSmallScreen(context)
-                  ? 2
+                  ? 1
                   : ResponsiveWidget.isMediumScreen(context)
                       ? 3
                       : 4,

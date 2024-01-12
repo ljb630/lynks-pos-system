@@ -30,14 +30,16 @@ class _MenuScreenState extends State<MenuScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
       child: Column(
         children: [
           SizedBox(
-            height: 400,
+            height: height * 0.45,
             child: GridView.count(
                 crossAxisCount: ResponsiveWidget.isSmallScreen(context)
-                    ? 2
+                    ? 1
                     : ResponsiveWidget.isMediumScreen(context)
                         ? 3
                         : 4,
@@ -107,7 +109,8 @@ class _MenuScreenState extends State<MenuScreen> {
                   },
                 )),
           ),
-          ItemsLayout(selected: selected)
+          SizedBox(
+              height: height * 0.45, child: ItemsLayout(selected: selected)),
         ],
       ),
     );
